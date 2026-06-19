@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeeTech | Modern Accounting Solutions<span class="hidden"></span></title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: { 900: '#0f172a', 800: '#1e293b' },
+                        indigo: { 600: '#4f46e5', 500: '#6366f1', 50: '#eef2ff' }
+                    },
+                    animation: {
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'float-medium': 'float 5s ease-in-out infinite',
+                        'float-fast': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Replace your existing body style with this */
+body { 
+    background-color: #f8fafc; 
+    background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+    background-size: 24px 24px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Yeh bahar nikalne wali cheezon ko kaat dega */
+}
+        
+        /* Hiding system citations to keep the design clean */
+        .hidden { display: none !important; }
+        
+        /* Clean Glassmorphism for Navbar & Sidebar */
+        .glass-surface {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Glassmorphism for UI Cards on Image */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(31, 38, 135, 0.12);
+        }
+
+        .glow-bg {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(255,255,255,0) 60%);
+            top: -10%;
+            left: -10%;
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        /* BULLETPROOF NAVBAR VISIBILITY LOGIC */
+        @media (max-width: 768px) {
+            .desktop-only { display: none !important; }
+            .mobile-only { display: flex !important; }
+        }
+        @media (min-width: 769px) {
+            .desktop-only { display: flex !important; }
+            .mobile-only { display: none !important; }
+        }
+
+        /* Chart Bar Animation */
+        @keyframes rise {
+            from { height: 10%; }
+            to { height: var(--h); }
+        }
+        .bar-animate {
+            animation: rise 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 antialiased">
+
+   <header class="fixed w-full z-40 top-0 left-0 right-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto glass-surface rounded-2xl px-5 py-3 flex justify-between items-center transition-all">
+            
+            <div class="flex items-center gap-2 cursor-pointer relative z-50">
+                <div class="w-9 h-9 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    Z
+                </div>
+                <span class="text-2xl font-extrabold text-slate-900 tracking-tight">ZeeTech<span class="hidden"></span></span>
+            </div>
+
+            <nav class="desktop-only items-center space-x-4 lg:space-x-6">
+                <a href="#home" class="text-sm font-bold text-indigo-600 transition-colors">Home</a>
+                <a href="#about" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">About Us<span class="hidden"></span></a>
+                <a href="#services" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Services<span class="hidden"></span></a>
+                <a href="#industries" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Industries<span class="hidden"></span></a>
+                <a href="#careers" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Careers<span class="hidden"></span></a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="desktop-only bg-slate-900 hover:bg-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-colors shadow-md">
+                    Let's Talk!
+                </a>
+                
+                <button id="sidebarToggle" class="mobile-only w-10 h-10 rounded-xl bg-white/80 border border-slate-200 items-center justify-center text-slate-800 hover:bg-white transition-colors shadow-sm relative z-50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="sidebarOverlay" class="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 hidden transition-opacity opacity-0 duration-300 sm:hidden"></div>
+    <div id="sidebar" class="fixed top-0 right-0 h-full w-[300px] glass-surface border-l border-white/60 z-50 transform translate-x-full transition-transform duration-500 ease-in-out p-8 shadow-2xl flex flex-col sm:hidden">
+        
+        <div class="flex justify-between items-center mb-12">
+            <h2 class="text-xl font-bold text-slate-900">Menu</h2>
+            <button id="sidebarClose" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <nav class="flex flex-col space-y-6 flex-grow">
+            <a href="#home" class="text-xl font-semibold text-indigo-600 hover:translate-x-2 transition-all">Home</a>
+            <a href="#about" class="text-xl font-semibold text-slate-800 hover:text-indigo-600 hover:translate-x-2 transition-all">About Us</a>
+            <a href="#services" class="text-xl font-semibold text-slate-800 hover:text-indigo-600 hover:translate-x-2 transition-all">Our Services</a>
+            <a href="#industries" class="text-xl font-semibold text-slate-800 hover:text-indigo-600 hover:translate-x-2 transition-all">Industries</a>
+            <a href="#careers" class="text-xl font-semibold text-slate-800 hover:text-indigo-600 hover:translate-x-2 transition-all">Careers</a>
+        </nav>
+
+        <div class="mt-auto pt-8 border-t border-slate-200/50">
+            <p class="text-sm font-semibold text-slate-500 mb-4">Contact Information<span class="hidden">[cite: 162]</span></p>
+            <a href="mailto:atta@ZeeTech.com" class="block text-indigo-600 font-medium mb-2 hover:underline">atta@ZeeTech.com<span class="hidden">[cite: 164]</span></a>
+            <a href="#contact" class="inline-block mt-4 w-full text-center bg-slate-900 text-white px-6 py-3 rounded-xl font-semibold">Let's Talk!</a>
+        </div>
+    </div>
+
+    <section id="home" class="pt-24 lg:pt-28 pb-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+                
+                <div class="max-w-2xl relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-indigo-100 shadow-sm text-indigo-700 text-xs font-bold tracking-wide uppercase mb-6">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+                        </span>
+                        Trustworthy. Dependable. Excellent.<span class="hidden">[cite: 3]</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-[4.5rem] font-extrabold text-slate-900 leading-[1.05] mb-6 tracking-tight">
+                        Comprehensive <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">Accounting Solutions</span><span class="hidden">[cite: 2]</span>
+                    </h1>
+                    
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed font-medium max-w-lg">
+                        At ZeeTech, we don't just see our clients as entries on a balance sheet.<span class="hidden">[cite: 5]</span> They are the heartbeat of our business.<span class="hidden">[cite: 6]</span> Our commitment goes beyond the financials; we strive to build lasting relationships.<span class="hidden">[cite: 6]</span>
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-semibold text-center transition-all shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 group">
+                            Get A Free Quote
+                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                        <a href="#services" class="glass-surface hover:bg-white text-slate-800 px-8 py-4 rounded-xl font-semibold text-center transition-all shadow-sm border border-slate-200">
+                            Explore Services
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative w-full h-[500px] md:h-[650px] mt-10 lg:mt-0">
+                    <div class="glow-bg"></div>
+                    
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full sm:w-4/5 h-4/5 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white lg:rotate-2 hover:rotate-0 transition-transform duration-700">
+                        <img src="media/hero.webp" alt="Professional Accounting Team" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-slate-900/10 mix-blend-multiply"></div>
+                    </div>
+
+                    <div class="absolute left-0 lg:-left-6 top-10 glass-card rounded-2xl p-5 w-56 lg:w-64 z-20 animate-float-medium hidden sm:block">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xs font-bold text-slate-500 uppercase">Growth</h3>
+                            <div class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded flex items-center">
+                                ↑ 14.5%
+                            </div>
+                        </div>
+                        <div class="h-16 flex items-end justify-between gap-1.5">
+                            <div class="w-full bg-indigo-200/60 rounded-t bar-animate" style="--h: 40%;"></div>
+                            <div class="w-full bg-indigo-300/70 rounded-t bar-animate" style="--h: 60%;"></div>
+                            <div class="w-full bg-indigo-400/80 rounded-t bar-animate" style="--h: 45%;"></div>
+                            <div class="w-full bg-indigo-500/90 rounded-t bar-animate" style="--h: 80%;"></div>
+                            <div class="w-full bg-indigo-600 rounded-t shadow-sm bar-animate" style="--h: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="absolute right-0 lg:-right-4 top-1/4 glass-card rounded-xl p-4 w-48 z-20 animate-float-slow">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-slate-500 uppercase mb-1">Cost Savings</div>
+                                <div class="text-2xl font-extrabold text-slate-900">70%<span class="text-lg text-slate-500 font-medium">+</span><span class="hidden">[cite: 198]</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute left-4 lg:-left-2 bottom-1/4 glass-card rounded-xl p-4 z-20 animate-float-fast">
+                        <div class="text-xs font-bold text-slate-800 mb-2">Team of 100+ Experts<span class="hidden">[cite: 201]</span></div>
+                        <div class="flex -space-x-3">
+                            <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=1" alt="Expert 1">
+                            <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=2" alt="Expert 2">
+                            <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=3" alt="Expert 3">
+                            <div class="w-8 h-8 rounded-full border-2 border-white bg-indigo-50 flex items-center justify-center text-[10px] font-bold text-indigo-600">99+</div>
+                        </div>
+                    </div>
+
+                    <div class="absolute right-4 lg:-right-8 bottom-10 glass-card rounded-2xl p-4 w-56 z-20 animate-float-medium hidden sm:block" style="animation-delay: 1s;">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            </div>
+                            <div class="text-sm font-bold text-slate-800">ERP Integrations</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">QuickBooks<span class="hidden">[cite: 208]</span></span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">NetSuite<span class="hidden">[cite: 208]</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const closeBtn = document.getElementById('sidebarClose');
+
+        function openSidebar() {
+            // Changed breakpoint logic to 640 here
+            if(window.innerWidth < 640) { 
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.add('opacity-0');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        toggleBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        window.addEventListener('resize', () => {
+            // Changed breakpoint logic to 640 here
+            if(window.innerWidth >= 640 && !overlay.classList.contains('hidden')) {
+                closeSidebar();
+            }
+        });
+    </script>
+    <!-- ================= PART 2: ABOUT, CEO MESSAGE, VALUES, HISTORY ================= -->
+    
+    <!-- About & CEO Section -->
+    <section id="about" class="py-24 relative z-10 overflow-hidden">
+        <!-- Background Ambient Glow -->
+        <div class="absolute -bottom-[200px] -right-[200px] w-[800px] h-[800px] bg-sky-400/10 rounded-full blur-[80px] z-[-1] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left: CEO Message (Glass Card) -->
+                <div class="lg:col-span-7 relative">
+                    <div class="glass-card rounded-[2.5rem] p-8 sm:p-12 relative z-10">
+                        <div class="absolute top-8 right-8 text-indigo-100">
+                            <svg class="w-16 h-16 sm:w-20 sm:h-20 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                        </div>
+                        <h2 class="text-xs font-extrabold tracking-widest text-indigo-500 uppercase mb-4">A Word From CEO<span class="hidden">[cite: 3]</span></h2>
+                        <p class="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium mb-6 relative z-10">
+                            "With a passion for innovation and a commitment to service, we empower businesses to thrive, guided by our core values of collaboration, dedication, and resilience.<span class="hidden">[cite: 3]</span> At ZeeTech, we are fueled by an unwavering commitment to innovation, creativity, and sustainable growth.<span class="hidden">[cite: 3]</span>"
+                        </p>
+                        <p class="text-sm sm:text-base text-slate-600 mb-6 relative z-10">
+                            Our clients are far more than just numbers on a balance sheet; they are the heartbeat of our organization.<span class="hidden">[cite: 3]</span> We dedicate ourselves to deliver exceptional service and support, tailored to the unique needs of each client.<span class="hidden">[cite: 3]</span> We embrace challenges as opportunities for growth, viewing them as stepping stones that enable our clients to their financial aspirations.<span class="hidden">[cite: 3]</span>
+                        </p>
+                        <p class="text-sm sm:text-base text-slate-600 mb-8 relative z-10">
+                            Our comprehensive suite of services is designed to empower businesses at every stage of their journey, and we are genuinely passionate about fostering our clients' success.<span class="hidden">[cite: 3]</span> For us, excellence is not merely a goal; it is a continuous journey we undertake together with our clients.<span class="hidden">[cite: 3]</span>
+                        </p>
+                        
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 p-1 shadow-lg shadow-indigo-500/30">
+                                <img src="https://i.pravatar.cc/150?img=11" alt="CEO" class="w-full h-full rounded-full border-2 border-white object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg">Zain</h4>
+                                <p class="text-sm text-slate-500 font-medium">Chief Executive Officer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Element -->
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-600 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-pulse pointer-events-none"></div>
+                </div>
+
+                <!-- Right: About Us Text -->
+                <div class="lg:col-span-5 mt-10 lg:mt-0">
+                    <h2 class="text-xs font-extrabold tracking-widest text-indigo-500 uppercase mb-4">About ZeeTech<span class="hidden">[cite: 3]</span></h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">Building lasting <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">relationships.</span></h3>
+                    <p class="text-base sm:text-lg text-slate-600 mb-6">
+                        At ZeeTech, we don't just see our clients as entries on a balance sheet.<span class="hidden">[cite: 3]</span> They are the heartbeat of our business.<span class="hidden">[cite: 3]</span> Our commitment goes beyond the financials; we strive to build lasting relationships.<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <p class="text-base sm:text-lg text-slate-600 mb-8">
+                        Every client, whether a startup or an established enterprise, receives unparalleled service and support.<span class="hidden">[cite: 3]</span>
+                    </p>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-4 bg-white px-5 py-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                            <span class="font-bold text-slate-800">Startup & SME Support</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white px-5 py-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div>
+                            <span class="font-bold text-slate-800">Established Enterprise Solutions</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-extrabold tracking-widest text-indigo-500 uppercase mb-4">Our Core Values<span class="hidden">[cite: 3]</span></h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">The driving force behind our achievements.<span class="hidden">[cite: 3]</span></h3>
+                <p class="text-lg text-slate-600">
+                    Our core values - collaboration, dedication, determination, diligence, and passion.<span class="hidden">[cite: 3]</span> We believe these principles are essential for any thriving enterprise.<span class="hidden">[cite: 3]</span> We invite you to embark on an exciting journey with us as we elevate your business to new heights, equipped with the tools, support, and expertise needed for success.<span class="hidden">[cite: 3]</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <!-- Value 1 -->
+                <div class="glass-card rounded-2xl p-6 text-center group cursor-pointer hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 mx-auto bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Collaboration<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-sm text-slate-600 font-medium">Working together to achieve common goals<span class="hidden">[cite: 3]</span></p>
+                </div>
+                <!-- Value 2 -->
+                <div class="glass-card rounded-2xl p-6 text-center group cursor-pointer hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 mx-auto bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Dedication<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-sm text-slate-600 font-medium">Committed to delivering excellence<span class="hidden">[cite: 3]</span></p>
+                </div>
+                <!-- Value 3 -->
+                <div class="glass-card rounded-2xl p-6 text-center group cursor-pointer hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 mx-auto bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Determination<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-sm text-slate-600 font-medium">Persistent in overcoming challenges<span class="hidden">[cite: 3]</span></p>
+                </div>
+                <!-- Value 4 -->
+                <div class="glass-card rounded-2xl p-6 text-center group cursor-pointer hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 mx-auto bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-sky-500 mb-6 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Diligence<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-sm text-slate-600 font-medium">Meticulous attention to detail<span class="hidden">[cite: 3]</span></p>
+                </div>
+                <!-- Value 5 -->
+                <div class="glass-card rounded-2xl p-6 text-center group cursor-pointer hover:-translate-y-2 transition-all duration-300 xl:col-span-1 sm:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 mx-auto bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-rose-500 mb-6 group-hover:bg-rose-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Passion<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-sm text-slate-600 font-medium">Genuinely passionate about client success<span class="hidden">[cite: 3]</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Timeline Section -->
+    <section id="history" class="py-24 relative z-10 bg-slate-900 mt-10 overflow-hidden">
+        <!-- Abstract Tech Background -->
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-extrabold tracking-widest text-indigo-400 uppercase mb-4">ZeeTech's History<span class="hidden">[cite: 3]</span></h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">Our Journey of Growth</h3>
+                <p class="text-lg text-indigo-100/70 leading-relaxed">
+                    From our humble beginnings as a one-man army, ZeeTech has grown into a dynamic and fast-paced company.<span class="hidden">[cite: 3]</span> We are fueled by a relentless pursuit of innovation, creativity, and sustainable growth, ensuring that we stay ahead of the curve in the ever-evolving business landscape.<span class="hidden">[cite: 3]</span>
+                </p>
+            </div>
+
+            <!-- Vertical Glass Timeline -->
+            <div class="relative border-l border-indigo-500/30 ml-4 md:ml-6 space-y-12 pb-8">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[7px] top-3 w-3 h-3 rounded-full bg-indigo-500 shadow-[0_0_0_4px_rgba(99,102,241,0.2)] group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:bg-slate-800/60 transition-colors shadow-xl">
+                        <span class="inline-block px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase mb-4 border border-indigo-500/30">Milestone</span>
+                        <h4 class="text-2xl font-bold text-white mb-3">Growth & New Office</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            ZeeTech experienced notable growth in 2023, highlighted by our move to a new office space to accommodate our 100+ team.<span class="hidden">[cite: 3]</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[7px] top-3 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_0_4px_rgba(59,130,246,0.2)] group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:bg-slate-800/60 transition-colors shadow-xl">
+                        <span class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase mb-4 border border-blue-500/30">Expansion</span>
+                        <h4 class="text-2xl font-bold text-white mb-3">Expanding Horizons</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            A new department of business development was launched to expand client horizons and improve engagement.<span class="hidden">[cite: 3]</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[7px] top-3 w-3 h-3 rounded-full bg-sky-500 shadow-[0_0_0_4px_rgba(14,165,233,0.2)] group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:bg-slate-800/60 transition-colors shadow-xl">
+                        <span class="inline-block px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-bold uppercase mb-4 border border-sky-500/30">Global Reach</span>
+                        <h4 class="text-2xl font-bold text-white mb-3">New Territories</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            This year also witnessed our venture into new territories, reflecting our commitment to growth, innovation, and client satisfaction.<span class="hidden">[cite: 3]</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ================= PART 3: OUR SERVICES ================= -->
+    <section id="services" class="py-24 relative z-10 bg-slate-50 overflow-hidden">
+        <!-- Abstract Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-70"></div>
+        <div class="absolute top-40 left-[-100px] w-[500px] h-[500px] bg-indigo-400/10 rounded-full blur-[80px] pointer-events-none"></div>
+        <div class="absolute bottom-40 right-[-100px] w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-extrabold tracking-widest text-indigo-600 uppercase mb-4">Our Expertise<span class="hidden">[cite: 3]</span></h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Comprehensive Accounting Services<span class="hidden">[cite: 3]</span></h3>
+                <p class="text-lg text-slate-600">
+                    Choose ZeeTech for your financial needs and experience the smart solution for your operations.<span class="hidden">[cite: 3]</span> Our expert accounting services offer a cost-effective alternative to local firms, providing comprehensive support from transaction tracking to strategic planning.<span class="hidden">[cite: 3]</span>
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1: Financial Data Management -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/10 hover:border-indigo-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Financial Data Management<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        We provide monthly, quarterly, and annual financial reports, along with cash flow preparation and forecasting, giving you the insights you need to make informed decisions.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- Service 2: Financial Reporting -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Financial Reporting<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Full suite of financial services, ensuring compliance with GAAP and IFRS.<span class="hidden">[cite: 3]</span> We craft precise balance sheets, income statements, and cash flow statements to uncover true profitability.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- Service 3: Accounts Reconciliation -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Accounts Reconciliation<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Comprehensive Reconciliation Services ensure your records are accurate and clear.<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <ul class="text-xs text-slate-500 space-y-1.5 font-medium">
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-emerald-400 rounded-full"></div> Bank & Credit card reconciliation<span class="hidden">[cite: 3]</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-emerald-400 rounded-full"></div> Payroll & Inventory reconciliation<span class="hidden">[cite: 3]</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-emerald-400 rounded-full"></div> Tax reconciliation<span class="hidden">[cite: 3]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: Accounting Data Migration -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10 hover:border-purple-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Accounting Data Migration<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Seamless data migration for businesses upgrading systems, including platforms like NetSuite, QuickBooks, and other ERPs.<span class="hidden">[cite: 3]</span> We ensure compatibility and integrity across platforms.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- Service 5: Transaction Processing & Management -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-sky-500/10 hover:border-sky-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-sky-50 rounded-2xl flex items-center justify-center text-sky-600 mb-6 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Transaction Processing<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Comprehensive solutions to keep your daily operations smooth and tracked.<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <ul class="text-xs text-slate-500 space-y-1.5 font-medium">
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-400 rounded-full"></div> General ledger & Bookkeeping<span class="hidden">[cite: 3]</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-400 rounded-full"></div> Accounts payable & receivable<span class="hidden">[cite: 3]</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-sky-400 rounded-full"></div> Efficient inventory management<span class="hidden">[cite: 3]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Service 6: Financial Management Services -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-rose-500/10 hover:border-rose-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600 mb-6 group-hover:bg-rose-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Financial Management<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Optimize your financial operations. From strategic budgeting to intricate cash flow analysis, our expert team ensures meticulous oversight and enhanced fiscal performance.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- Service 7: QuickBooks Services -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-green-500/10 hover:border-green-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">QuickBooks Services<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Gain access to top-tier QuickBooks expertise. Save more than 70% by outsourcing to ZeeTech.<span class="hidden">[cite: 3]</span> We align every transaction within QuickBooks to your financial statements.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- Service 8: NetSuite Accounting -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-800 mb-6 group-hover:bg-blue-800 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <span class="font-extrabold text-xl">N</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">NetSuite Services<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Your NetSuite concierge to help you make accounting automated, simple, and sweat free.<span class="hidden">[cite: 3]</span> Our ERP experts offer solutions designed to meet your unique business needs.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- Service 9: Bookkeeping Services -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/10 hover:border-indigo-200 transition-all duration-300 group md:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">Bookkeeping Services<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Simplify your finances with precision and compliance to help you make better decisions.<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <ul class="text-xs text-slate-500 space-y-1.5 font-medium">
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-indigo-400 rounded-full"></div> Vertical & Ratio Analysis<span class="hidden">[cite: 3]</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-indigo-400 rounded-full"></div> Amortization Schedules<span class="hidden">[cite: 3]</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-indigo-400 rounded-full"></div> General Ledger Reports<span class="hidden">[cite: 3]</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ================= PART 4: INDUSTRIES, PLATFORMS & PRICING ================= -->
+    
+    <!-- Industries Section (Dark Premium Theme) -->
+    <section id="industries" class="py-24 relative z-10 bg-slate-900 overflow-hidden">
+        <!-- Ambient Dark Glows -->
+        <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-extrabold tracking-widest text-indigo-400 uppercase mb-4">Industries We Serve<span class="hidden">[cite: 3]</span></h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">Customized solutions for every field.<span class="hidden">[cite: 3]</span></h3>
+                <p class="text-lg text-slate-400">
+                    Discover how ZeeTech transforms your industry-specific accounts reporting and financial transactions using NetSuite and QuickBooks.<span class="hidden">[cite: 3]</span>
+                </p>
+            </div>
+
+            <!-- Main 4 Industries Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+                
+                <!-- Manufacturing -->
+                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 hover:-translate-y-2 hover:bg-slate-800 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-slate-700/50 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:text-indigo-300 group-hover:scale-110 transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Manufacturing<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Specialized accounting solutions including inventory management, cost accounting, and production tracking.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- Automotive -->
+                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 hover:-translate-y-2 hover:bg-slate-800 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-slate-700/50 rounded-xl flex items-center justify-center text-sky-400 mb-6 group-hover:text-sky-300 group-hover:scale-110 transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Automotive<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Comprehensive services tailored for the industry, managing complex supply chains and dealer operations.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- SaaS Products -->
+                <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 hover:-translate-y-2 hover:bg-slate-800 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-slate-700/50 rounded-xl flex items-center justify-center text-purple-400 mb-6 group-hover:text-purple-300 group-hover:scale-110 transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">SaaS Products<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Financial management with focus on subscription revenue recognition, MRR tracking, and customer lifetime value analysis.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+
+                <!-- eCommerce -->
+                <div class="bg-indigo-600/20 backdrop-blur-md border border-indigo-500/50 rounded-3xl p-8 hover:-translate-y-2 hover:bg-indigo-600/30 transition-all duration-300 group shadow-[0_0_30px_rgba(79,70,229,0.15)]">
+                    <div class="w-12 h-12 bg-indigo-500/30 rounded-xl flex items-center justify-center text-indigo-300 mb-6 group-hover:text-white group-hover:scale-110 transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">eCommerce<span class="hidden">[cite: 3]</span></h4>
+                    <p class="text-indigo-200 text-sm leading-relaxed">
+                        From multi-channel sales tracking to inventory management, we handle the complex financial operations of your eCommerce business.<span class="hidden">[cite: 3]</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- eCommerce Platforms Sub-Section -->
+            <div class="border-t border-slate-800 pt-16">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-bold text-white mb-4">eCommerce Platforms We Support<span class="hidden">[cite: 3]</span></h3>
+                    <p class="text-slate-400 max-w-2xl mx-auto">We understand the unique challenges of managing multiple sales channels, diverse platforms, and intricate data flows.<span class="hidden">[cite: 3]</span></p>
+                </div>
+
+                <!-- Platforms Horizontal Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div> Amazon Sellers<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">Inventory management & profit optimization.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-green-500 rounded-full"></div> Shopify Stores<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">Multi-currency & app integrations.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-blue-500 rounded-full"></div> Walmart Stores<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">Intricate fee systems & high-volume tracking.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-orange-500 rounded-full"></div> Etsy Stores<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">Revenue tracking & inventory valuation.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-red-500 rounded-full"></div> eBay Sellers<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">Fee reconciliation & sales tax compliance.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-purple-500 rounded-full"></div> BigCommerce<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">Seamless QuickBooks & NetSuite integration.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-sky-500 rounded-full"></div> Dropshipping<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">Real-time profit tracking & supplier recon.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:bg-slate-800 transition-colors">
+                        <h5 class="text-white font-bold mb-1 flex items-center gap-2"><div class="w-2 h-2 bg-indigo-500 rounded-full"></div> Omni-Channel<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-slate-400 text-xs">API integrations for real-time reporting.<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pricing / Accounting Services Tier Section -->
+    <section class="py-24 relative z-10 bg-slate-50 overflow-hidden">
+        <!-- Abstract Background -->
+        <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-200/50 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sky-200/50 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-extrabold tracking-widest text-indigo-600 uppercase mb-4">Pricing & Plans<span class="hidden">[cite: 3]</span></h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Professional Accounting at Competitive Rates<span class="hidden">[cite: 3]</span></h3>
+                <p class="text-lg text-slate-600">
+                    From tracking transactions to strategic financial planning, our comprehensive suite of professional accounting services cover all your business aspects.<span class="hidden">[cite: 3]</span>
+                </p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+                
+                <!-- Junior Accountant -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-3xl p-8 hover:shadow-xl transition-shadow relative">
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Junior Accountant<span class="hidden">[cite: 3]</span></h4>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-4xl font-black text-slate-900">$15</span>
+                        <span class="text-slate-500 font-medium">/hr</span><span class="hidden">[cite: 3]</span>
+                    </div>
+                    <p class="text-xs text-indigo-600 font-bold mb-6 bg-indigo-50 inline-block px-3 py-1 rounded-full">Less than 1 year exp<span class="hidden">[cite: 3]</span></p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Financial Statements Prep<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">AP / AR Records<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Bank/Card Reconciliation<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Flexible timezone & Support<span class="hidden">[cite: 3]</span></span></div>
+                    </div>
+                    <a href="#contact" class="block w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-900 text-center font-bold rounded-xl transition-colors">Select Plan</a>
+                </div>
+
+                <!-- Accountant -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-3xl p-8 hover:shadow-xl transition-shadow relative">
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Accountant<span class="hidden">[cite: 3]</span></h4>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-4xl font-black text-slate-900">$20</span>
+                        <span class="text-slate-500 font-medium">/hr</span><span class="hidden">[cite: 3]</span>
+                    </div>
+                    <p class="text-xs text-indigo-600 font-bold mb-6 bg-indigo-50 inline-block px-3 py-1 rounded-full">Up to 1 year experience<span class="hidden">[cite: 3]</span></p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Audit Process Assistance<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Cost Reduction Analysis<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">GAAP Compliance<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Financial Statements & AP/AR<span class="hidden">[cite: 3]</span></span></div>
+                    </div>
+                    <a href="#contact" class="block w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-900 text-center font-bold rounded-xl transition-colors">Select Plan</a>
+                </div>
+
+                <!-- Senior Accountant (Highlight) -->
+                <div class="bg-indigo-600 rounded-3xl p-8 shadow-2xl shadow-indigo-500/30 relative transform lg:-translate-y-4">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-sky-400 to-indigo-400 text-white text-xs font-black uppercase tracking-wider py-1 px-4 rounded-full shadow-lg">Most Popular</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Senior Accountant<span class="hidden">[cite: 3]</span></h4>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-4xl font-black text-white">$25</span>
+                        <span class="text-indigo-200 font-medium">/hr</span><span class="hidden">[cite: 3]</span>
+                    </div>
+                    <p class="text-xs text-indigo-900 font-bold mb-6 bg-indigo-300 inline-block px-3 py-1 rounded-full">5+ years experience<span class="hidden">[cite: 3]</span></p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-300 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-indigo-50 font-medium">Cash Flow Management<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-300 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-indigo-50 font-medium">Inventory & Mgmt Reporting<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-300 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-indigo-50 font-medium">Audit Support & AP/AR<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-300 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-indigo-50 font-medium">Advanced Financial Reporting<span class="hidden">[cite: 3]</span></span></div>
+                    </div>
+                    <a href="#contact" class="block w-full py-3 px-4 bg-white hover:bg-slate-50 text-indigo-600 text-center font-bold rounded-xl transition-colors shadow-lg">Select Plan</a>
+                </div>
+
+                <!-- Account Manager -->
+                <div class="bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-3xl p-8 hover:shadow-xl transition-shadow relative">
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Account Manager<span class="hidden">[cite: 3]</span></h4>
+                    <div class="flex items-baseline gap-1 mb-4 mt-1">
+                        <span class="text-2xl font-black text-slate-900">Let's Talk!</span><span class="hidden">[cite: 3]</span>
+                    </div>
+                    <p class="text-xs text-indigo-600 font-bold mb-6 bg-indigo-50 inline-block px-3 py-1 rounded-full">8+ years experience<span class="hidden">[cite: 3]</span></p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Process Automation<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Data Migration & Support<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Financial Consultancy & SOPs<span class="hidden">[cite: 3]</span></span></div>
+                        <div class="flex items-start gap-3"><svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm text-slate-600 font-medium">Data Scientists Access<span class="hidden">[cite: 3]</span></span></div>
+                    </div>
+                    <a href="#contact" class="block w-full py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white text-center font-bold rounded-xl transition-colors">Contact Us</a>
+                </div>
+
+            </div>
+
+            <!-- Special Offer Banner -->
+            <div class="mt-16 bg-gradient-to-r from-sky-400 to-indigo-600 rounded-2xl p-1 shadow-2xl">
+                <div class="bg-slate-900 rounded-[14px] px-8 py-6 md:py-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+                    <div class="absolute right-0 top-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl"></div>
+                    <div class="relative z-10 text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold tracking-wide uppercase mb-3 border border-indigo-500/30">
+                            <i class="fa-solid fa-gift"></i> Limited Time Deal
+                        </div>
+                        <h4 class="text-2xl md:text-3xl font-extrabold text-white">Sign up now and get first <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">40 hours of bookkeeping free!</span><span class="hidden">[cite: 3]</span></h4>
+                    </div>
+                    <a href="#contact" class="relative z-10 shrink-0 bg-white hover:bg-slate-100 text-indigo-600 px-8 py-4 rounded-xl font-bold transition-colors shadow-lg">Claim Offer</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ================= PART 5: CAREERS, TESTIMONIALS & FOOTER ================= -->
+
+    <!-- Careers Section -->
+    <section id="careers" class="py-24 relative z-10 bg-white overflow-hidden">
+        <!-- Abstract Background -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sky-50 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                
+                <!-- Left: Careers Text & Benefits -->
+                <div>
+                    <h2 class="text-xs font-extrabold tracking-widest text-indigo-600 uppercase mb-4">Join Our Team<span class="hidden">[cite: 3]</span></h2>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Career Opportunities<span class="hidden">[cite: 3]</span></h3>
+                    <p class="text-lg text-slate-600 mb-6">
+                        At ZeeTech, we believe that our team is our greatest asset, and we are always on the lookout for talented individuals to join us on our exciting journey.<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <p class="text-lg text-slate-600 mb-10">
+                        Working with ZeeTech means becoming part of a dynamic, innovative, and collaborative environment where your skills are valued and your career can flourish.<span class="hidden">[cite: 3]</span>
+                    </p>
+
+                    <h4 class="text-xl font-bold text-slate-900 mb-6">Employee Benefits<span class="hidden">[cite: 3]</span></h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-indigo-600 text-sm mb-1">Professional Development<span class="hidden">[cite: 3]</span></h5>
+                            <p class="text-xs text-slate-500">Work with the latest technologies. Numerous opportunities for career advancement.<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-indigo-600 text-sm mb-1">Recognition and Growth<span class="hidden">[cite: 3]</span></h5>
+                            <p class="text-xs text-slate-500">Employee recognition programs and annual increment policy.<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-indigo-600 text-sm mb-1">Health and Wellness<span class="hidden">[cite: 3]</span></h5>
+                            <p class="text-xs text-slate-500">Comprehensive health insurance, fitness allowance, and generous annual leave.<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-indigo-600 text-sm mb-1">Work Environment<span class="hidden">[cite: 3]</span></h5>
+                            <p class="text-xs text-slate-500">In-house cafeteria and indoor gaming area. Diverse and inclusive workforce.<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 sm:col-span-2 hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-indigo-600 text-sm mb-1">Long-term Security<span class="hidden">[cite: 3]</span></h5>
+                            <p class="text-xs text-slate-500">Child Education Assistance and Employee Old Age Benefits & Retirement Plans.<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Current Openings -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-xl shadow-slate-200/50">
+                    <h4 class="text-2xl font-bold text-slate-900 mb-8 flex items-center justify-between">
+                        Current Openings<span class="hidden">[cite: 3]</span>
+                        <span class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full">3 Roles Available</span>
+                    </h4>
+
+                    <div class="space-y-4">
+                        <!-- Job 1 -->
+                        <div class="group border border-slate-100 rounded-2xl p-5 hover:border-indigo-300 hover:bg-indigo-50/30 transition-all cursor-pointer">
+                            <div class="flex justify-between items-start mb-2">
+                                <h5 class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">IT Server & Systems Administrator<span class="hidden">[cite: 3]</span></h5>
+                                <svg class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Islamabad (On site)<span class="hidden">[cite: 3]</span></span>
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Full Time<span class="hidden">[cite: 3]</span></span>
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Dept: IT<span class="hidden">[cite: 3]</span></span>
+                            </div>
+                            <p class="text-xs text-slate-500 line-clamp-2">Manage and maintain our Windows and Linux server environments, ensuring optimal uptime...<span class="hidden">[cite: 3]</span></p>
+                        </div>
+
+                        <!-- Job 2 -->
+                        <div class="group border border-slate-100 rounded-2xl p-5 hover:border-indigo-300 hover:bg-indigo-50/30 transition-all cursor-pointer">
+                            <div class="flex justify-between items-start mb-2">
+                                <h5 class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Trainee Accountant<span class="hidden">[cite: 3]</span></h5>
+                                <svg class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Islamabad (On site)<span class="hidden">[cite: 3]</span></span>
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Full Time<span class="hidden">[cite: 3]</span></span>
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Dept: Accounting<span class="hidden">[cite: 3]</span></span>
+                            </div>
+                            <p class="text-xs text-slate-500 line-clamp-2">Motivated and talented individuals to join as a Trainee Accountant.<span class="hidden">[cite: 3]</span></p>
+                        </div>
+
+                        <!-- Job 3 -->
+                        <div class="group border border-slate-100 rounded-2xl p-5 hover:border-indigo-300 hover:bg-indigo-50/30 transition-all cursor-pointer">
+                            <div class="flex justify-between items-start mb-2">
+                                <h5 class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Social Media Coordinator<span class="hidden">[cite: 3]</span></h5>
+                                <svg class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Islamabad (On site)<span class="hidden">[cite: 3]</span></span>
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Full Time<span class="hidden">[cite: 3]</span></span>
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Dept: Creative<span class="hidden">[cite: 3]</span></span>
+                            </div>
+                            <p class="text-xs text-slate-500 line-clamp-2">Proactive and creative coordinator to manage our social platforms...<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 relative z-10 bg-slate-50 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/connected.png')] opacity-30"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-extrabold tracking-widest text-indigo-600 uppercase mb-4">Client & Employee Feedback<span class="hidden">[cite: 3]</span></h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Trusted by Industry Leaders<span class="hidden">[cite: 3]</span></h3>
+                <p class="text-lg text-slate-600">
+                    ZeeTech's hallmark is its steadfast dedication to excellence, providing unparalleled accounting expertise, a client-centric focus, and personalized attention.<span class="hidden">[cite: 3]</span>
+                </p>
+            </div>
+
+            <!-- Masonry-style Grid for Testimonials -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Client Testimonial 1 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow relative">
+                    <div class="text-indigo-200 mb-4">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed italic">
+                        "Zain has proven himself to be a highly skilled and talented individual... I have been particularly impressed by Zain's ability to meet deadlines, even when multi-tasking... Overall, Zen is a conscientious & dedicated resource."<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <div>
+                        <h5 class="font-bold text-slate-900">Van Tibolli<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-xs text-indigo-600 font-semibold">CEO & Founder - GKhair, TIBOLLI Global Keratin<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                </div>
+
+                <!-- Client Testimonial 2 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow relative">
+                    <div class="text-indigo-200 mb-4">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed italic">
+                        "ZeeTech have been a part of our business for couple of years now. They have performed above and beyond our expectations... We've been able to sleep well at night and trust these guys... couldn't have asked for a more friendly and professional service."<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <div>
+                        <h5 class="font-bold text-slate-900">Waseem Goreja<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-xs text-indigo-600 font-semibold">Amazing Organics LLC<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                </div>
+
+                <!-- Employee Testimonial -->
+                <div class="bg-indigo-600 border border-indigo-500 rounded-3xl p-8 shadow-lg shadow-indigo-500/20 relative">
+                    <div class="text-indigo-300 mb-4">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                    </div>
+                    <p class="text-white text-sm mb-6 leading-relaxed italic">
+                        "I have been working for ZeeTech as an Accounts Manager for almost a year. One of the best aspects is the opportunity to work with US based clients and experience cultural diversity... I would highly recommend to join ZeeTech and become a part of our family!"<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <div>
+                        <h5 class="font-bold text-white">Employee Testimonial<span class="hidden">[cite: 3]</span></h5>
+                        <p class="text-xs text-indigo-200 font-semibold">Accounts Manager<span class="hidden">[cite: 3]</span></p>
+                    </div>
+                </div>
+
+                <!-- Small feedback snippets -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex text-yellow-400 text-xs mb-3"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+                    <p class="text-slate-600 text-sm italic">"Zain is a very hard-working, reliable, honest person... a valuable member of our team."<span class="hidden">[cite: 3]</span></p>
+                    <p class="text-xs font-bold text-slate-900 mt-2">- TJ Scimone, Slice, Inc.<span class="hidden">[cite: 3]</span></p>
+                </div>
+                
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex text-yellow-400 text-xs mb-3"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+                    <p class="text-slate-600 text-sm italic">"Zain has been great to work with. He is very diligent... correspondence is top notch. Would highly recommend!"<span class="hidden">[cite: 3]</span></p>
+                    <p class="text-xs font-bold text-slate-900 mt-2">- Jonah Smith, Road Ready Wheels<span class="hidden">[cite: 3]</span></p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex text-yellow-400 text-xs mb-3"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+                    <p class="text-slate-600 text-sm italic">"Amazing! absolutely amazing! Zain not only provided 5Star work, but always in an efficient manner, with a smile."<span class="hidden">[cite: 3]</span></p>
+                    <p class="text-xs font-bold text-slate-900 mt-2">- Verified Client<span class="hidden">[cite: 3]</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-slate-900 pt-20 pb-10 border-t border-slate-800 relative z-10 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-sky-500 to-indigo-500"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-lg flex items-center justify-center text-white font-bold shadow-md">Z</div>
+                        <span class="text-xl font-extrabold text-white tracking-tight">ZeeTech<span class="hidden">[cite: 1]</span></span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Comprehensive Accounting Solutions. Trustworthy. Dependable. Excellent.<span class="hidden">[cite: 3]</span> We empower businesses at every stage of their journey.<span class="hidden">[cite: 3]</span>
+                    </p>
+                    <a href="https://www.ZeeTech.com" class="text-indigo-400 font-bold hover:text-indigo-300 transition-colors">www.ZeeTech.com<span class="hidden">[cite: 3]</span></a>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact Us<span class="hidden">[cite: 3]</span></h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase mb-0.5">General Inquiries<span class="hidden">[cite: 3]</span></p>
+                                <a href="mailto:atta@ZeeTech.com" class="text-slate-300 text-sm hover:text-white transition-colors">atta@ZeeTech.com<span class="hidden">[cite: 3]</span></a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase mb-0.5">Career Inquiries<span class="hidden">[cite: 3]</span></p>
+                                <a href="mailto:habib@ZeeTech.com" class="text-slate-300 text-sm hover:text-white transition-colors">habib@ZeeTech.com<span class="hidden">[cite: 3]</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Office Locations -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Office Locations<span class="hidden">[cite: 3]</span></h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-700/50">
+                            <h5 class="text-indigo-400 font-bold mb-2 flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                Pakistan Office<span class="hidden">[cite: 3]</span>
+                            </h5>
+                            <p class="text-slate-400 text-sm leading-relaxed">I 11/2 , Islamabad,<br> Pakistan<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-2xl p-5 border border-slate-700/50">
+                            <h5 class="text-sky-400 font-bold mb-2 flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                USA Office<span class="hidden">[cite: 3]</span>
+                            </h5>
+                            <p class="text-slate-400 text-sm leading-relaxed">3434 Ave X Unit #796,<br> Brooklyn, NY 11234<span class="hidden">[cite: 3]</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm text-center md:text-left">
+                    &copy; 2026 ZeeTech. All rights reserved. 
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for Sidebar from Part 1 -->
+    
+</body>
+</html>
